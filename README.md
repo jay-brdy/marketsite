@@ -2,6 +2,8 @@
 
 This is a full‑stack practice e‑commerce project inspired by Animal Crossing New Horizon's fish. It includes a Node/Express API, PostgreSQL persistence, authentication, cart, orders, and a static frontend.
 
+This project also uses GitHub’s Speckit. It’s my first time using it, and I’m using it here to learn and get familiar with the workflow.
+
 ## Features
 - Product catalog with images and descriptions
 - Cart add/update/remove via API
