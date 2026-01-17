@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Orders</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <h2>Fish Market</h2>
+        <nav class="nav-links">
+          <a href="/pages/index.html">Home</a>
+          <a href="/pages/products.html">Products</a>
+          <a href="/pages/cart.html">Cart</a>
+          <a href="/pages/about.html">About</a>
+          <a href="/pages/faq.html">FAQ</a>
+          <a href="/pages/login.html">Login</a>
+          <a href="/pages/orders.html">Orders</a>
+          <a href="/pages/admin.html">Admin</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Admin Orders</h1>
+      <div class="notice">Admin access required.</div>
+      <div data-admin-orders class="card-grid"></div>
+    </main>
+
+    <script type="module">
+      import { loadAdminOrders } from '../js/ui.js';
+      loadAdminOrders();
+    </script>
+  </body>
+</html>
