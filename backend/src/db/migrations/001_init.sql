@@ -4,9 +4,12 @@ CREATE TABLE IF NOT EXISTS users (
   email TEXT NOT NULL UNIQUE,
   password_hash TEXT NOT NULL,
   role TEXT NOT NULL DEFAULT 'user',
+  birthday DATE,
   created_at TIMESTAMP NOT NULL DEFAULT NOW(),
   last_login_at TIMESTAMP
 );
+
+ALTER TABLE users ADD COLUMN IF NOT EXISTS birthday DATE;
 
 CREATE TABLE IF NOT EXISTS products (
   id SERIAL PRIMARY KEY,

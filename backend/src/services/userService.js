@@ -8,15 +8,22 @@ export async function registerUser({ displayName, email, password }) {
   const { rows } = await pool.query(
     `INSERT INTO users (display_name, email, password_hash, role)
      VALUES ($1, $2, $3, $4)
-     RETURNING id, display_name, email, role`,
+     RETURNING id, display_name, email, role, birthday`,
     [displayName, email, passwordHash, role]
   );
-  return rows[0];
+  const user = rows[0];
+  return {
+    id: user.id,
+    displayName: user.display_name,
+    email: user.email,
+    role: user.role,
+    birthday: user.birthday
+  };
 }
 
 export async function authenticateUser({ email, password }) {
   const { rows } = await pool.query(
-    'SELECT id, display_name, email, role, password_hash FROM users WHERE email = $1',
+    'SELECT id, display_name, email, role, password_hash, birthday FROM users WHERE email = $1',
     [email]
   );
   const user = rows[0];
@@ -27,14 +34,42 @@ export async function authenticateUser({ email, password }) {
     id: user.id,
     displayName: user.display_name,
     email: user.email,
-    role: user.role
+    role: user.role,
+    birthday: user.birthday
   };
 }
 
 export async function getUserById(id) {
   const { rows } = await pool.query(
-    'SELECT id, display_name, email, role FROM users WHERE id = $1',
+    'SELECT id, display_name, email, role, birthday FROM users WHERE id = $1',
     [id]
   );
-  return rows[0] || null;
+  const user = rows[0];
+  if (!user) return null;
+  return {
+    id: user.id,
+    displayName: user.display_name,
+    email: user.email,
+    role: user.role,
+    birthday: user.birthday
+  };
+}
+
+export async function updateUserProfile(id, { displayName, birthday }) {
+  const { rows } = await pool.query(
+    `UPDATE users
+     SET display_name = COALESCE($1, display_name),
+         birthday = COALESCE($2, birthday)
+     WHERE id = $3
+     RETURNING id, display_name, email, role, birthday`,
+    [displayName ?? null, birthday ?? null, id]
+  );
+  const user = rows[0];
+  return {
+    id: user.id,
+    displayName: user.display_name,
+    email: user.email,
+    role: user.role,
+    birthday: user.birthday
+  };
 }

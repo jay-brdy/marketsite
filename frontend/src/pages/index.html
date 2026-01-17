@@ -16,8 +16,9 @@
           <a href="/pages/cart.html">Cart</a>
           <a href="/pages/about.html">About</a>
           <a href="/pages/faq.html">FAQ</a>
-          <a href="/pages/login.html">Login</a>
-          <a href="/pages/orders.html">Orders</a>
+          <a href="/pages/login.html" data-guest-only>Login</a>
+          <a href="/pages/profile.html" data-auth-only>Profile</a>
+          <a href="/pages/orders.html" data-auth-only>Orders</a>
           <a href="/pages/admin.html">Admin</a>
         </nav>
       </div>
@@ -36,5 +37,10 @@
         <div class="notice">Attribution for third-party content is provided on the products page.</div>
       </section>
     </main>
+
+    <script type="module">
+      import { initAuth } from '../js/auth.js';
+      initAuth();
+    </script>
   </body>
 </html>

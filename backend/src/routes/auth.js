@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { authenticateUser, getUserById, registerUser } from '../services/userService.js';
+import { requireAuth } from '../middleware/auth.js';
+import { authenticateUser, getUserById, registerUser, updateUserProfile } from '../services/userService.js';
 
 export const authRouter = Router();
 
@@ -45,6 +46,23 @@ authRouter.get('/me', async (req, res, next) => {
   try {
     if (!req.session?.userId) return res.status(200).json({ user: null });
     const user = await getUserById(req.session.userId);
+    res.json({ user });
+  } catch (err) {
+    next(err);
+  }
+});
+
+authRouter.patch('/me', requireAuth, async (req, res, next) => {
+  try {
+    const { displayName, birthday } = req.body;
+    if (displayName === undefined && birthday === undefined) {
+      return res.status(400).json({ error: 'Missing fields' });
+    }
+    const normalizedBirthday = birthday === '' ? null : birthday;
+    const user = await updateUserProfile(req.session.userId, {
+      displayName,
+      birthday: normalizedBirthday
+    });
     res.json({ user });
   } catch (err) {
     next(err);

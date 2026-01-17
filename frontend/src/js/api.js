@@ -21,6 +21,7 @@ export const api = {
   login: (payload) => request('/auth/login', { method: 'POST', body: JSON.stringify(payload) }),
   logout: () => request('/auth/logout', { method: 'POST' }),
   me: () => request('/auth/me'),
+  updateProfile: (payload) => request('/auth/me', { method: 'PATCH', body: JSON.stringify(payload) }),
   getCart: () => request('/cart'),
   addToCart: (payload) => request('/cart/items', { method: 'POST', body: JSON.stringify(payload) }),
   updateCartItem: (productId, payload) => request(`/cart/items/${productId}`, { method: 'PATCH', body: JSON.stringify(payload) }),

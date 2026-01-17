@@ -16,44 +16,67 @@
           <a href="/pages/cart.html">Cart</a>
           <a href="/pages/about.html">About</a>
           <a href="/pages/faq.html">FAQ</a>
-          <a href="/pages/login.html">Login</a>
-          <a href="/pages/orders.html">Orders</a>
+          <a href="/pages/login.html" data-guest-only>Login</a>
+          <a href="/pages/profile.html" data-auth-only>Profile</a>
+          <a href="/pages/orders.html" data-auth-only>Orders</a>
           <a href="/pages/admin.html">Admin</a>
         </nav>
       </div>
     </header>
 
     <main class="container">
-      <h1>Login / Register</h1>
-      <div class="notice">Use admin email configured in the backend to get admin access.</div>
-      <div class="card-grid">
+      <section data-auth-forms>
+        <h1>Login / Register</h1>
+        <div class="notice">Use admin email configured in the backend to get admin access.</div>
+        <div class="card-grid">
+          <div class="card">
+            <h3>Create Account</h3>
+            <form data-register-form>
+              <label>Display Name</label>
+              <input name="displayName" required />
+              <label>Email</label>
+              <input type="email" name="email" required />
+              <label>Password</label>
+              <input type="password" name="password" required />
+              <button type="submit">Register</button>
+            </form>
+          </div>
+          <div class="card">
+            <h3>Sign In</h3>
+            <form data-login-form>
+              <label>Email</label>
+              <input type="email" name="email" required />
+              <label>Password</label>
+              <input type="password" name="password" required />
+              <button type="submit">Login</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section data-profile style="display:none">
+        <h1>Your Profile</h1>
         <div class="card">
-          <h3>Create Account</h3>
-          <form data-register-form>
+          <p><strong>Name:</strong> <span data-profile-name></span></p>
+          <p><strong>Email:</strong> <span data-profile-email></span></p>
+          <p><strong>Role:</strong> <span data-profile-role></span></p>
+          <form data-profile-form>
             <label>Display Name</label>
             <input name="displayName" required />
-            <label>Email</label>
-            <input type="email" name="email" required />
-            <label>Password</label>
-            <input type="password" name="password" required />
-            <button type="submit">Register</button>
+            <label>Birthday</label>
+            <input type="date" name="birthday" />
+            <button type="submit">Save Profile</button>
           </form>
+          <p class="notice" data-profile-status></p>
+          <button class="button secondary" data-logout>Log out</button>
         </div>
-        <div class="card">
-          <h3>Sign In</h3>
-          <form data-login-form>
-            <label>Email</label>
-            <input type="email" name="email" required />
-            <label>Password</label>
-            <input type="password" name="password" required />
-            <button type="submit">Login</button>
-          </form>
-        </div>
-      </div>
+      </section>
     </main>
 
     <script type="module">
-      import { bindAuthForms } from '../js/auth.js';
+      import { bindAuthForms, initAuth, loadProfileView } from '../js/auth.js';
+      initAuth();
+      loadProfileView();
       bindAuthForms();
     </script>
   </body>

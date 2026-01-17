@@ -16,8 +16,9 @@
           <a href="/pages/cart.html">Cart</a>
           <a href="/pages/about.html">About</a>
           <a href="/pages/faq.html">FAQ</a>
-          <a href="/pages/login.html">Login</a>
-          <a href="/pages/orders.html">Orders</a>
+          <a href="/pages/login.html" data-guest-only>Login</a>
+          <a href="/pages/profile.html" data-auth-only>Profile</a>
+          <a href="/pages/orders.html" data-auth-only>Orders</a>
           <a href="/pages/admin.html">Admin</a>
         </nav>
       </div>
@@ -33,6 +34,8 @@
 
     <script type="module">
       import { loadCart, bindCartItemActions, bindCheckoutButton } from '../js/cart.js';
+      import { initAuth } from '../js/auth.js';
+      initAuth();
       loadCart();
       bindCartItemActions();
       bindCheckoutButton();

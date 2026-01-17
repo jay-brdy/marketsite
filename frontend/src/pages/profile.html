@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Orders</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
   <body>
@@ -25,18 +25,31 @@
     </header>
 
     <main class="container">
-      <h1>Your Orders</h1>
-      <div data-orders class="card-grid"></div>
-      <button class="button secondary" data-logout>Log out</button>
+      <section data-profile style="display:none">
+        <h1>Your Profile</h1>
+        <div class="card">
+          <p><strong>Name:</strong> <span data-profile-name></span></p>
+          <p><strong>Email:</strong> <span data-profile-email></span></p>
+          <p><strong>Role:</strong> <span data-profile-role></span></p>
+          <form data-profile-form>
+            <label>Display Name</label>
+            <input name="displayName" required />
+            <label>Birthday</label>
+            <input type="date" name="birthday" />
+            <button type="submit">Save Profile</button>
+          </form>
+          <p class="notice" data-profile-status></p>
+          <button class="button secondary" data-logout>Log out</button>
+        </div>
+      </section>
     </main>
 
     <script type="module">
-      import { loadOrders } from '../js/ui.js';
-      import { bindAuthForms, initAuth, requireAuthForPage } from '../js/auth.js';
+      import { bindAuthForms, initAuth, loadProfileView, requireAuthForPage } from '../js/auth.js';
       initAuth();
       const user = await requireAuthForPage('./login.html');
       if (user) {
-        loadOrders();
+        loadProfileView();
         bindAuthForms();
       }
     </script>

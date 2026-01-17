@@ -2,12 +2,22 @@ import { api } from './api.js';
 
 export function setNavUser(user) {
   const status = document.querySelector('[data-auth-status]');
-  if (!status) return;
-  if (user) {
-    status.textContent = `Signed in as ${user.displayName} (${user.role})`;
-  } else {
-    status.textContent = 'Not signed in';
+  if (status) {
+    if (user) {
+      status.textContent = `Signed in as ${user.displayName} (${user.role})`;
+    } else {
+      status.textContent = 'Not signed in';
+    }
   }
+
+  const authOnly = document.querySelectorAll('[data-auth-only]');
+  const guestOnly = document.querySelectorAll('[data-guest-only]');
+  authOnly.forEach((el) => {
+    el.style.display = user ? '' : 'none';
+  });
+  guestOnly.forEach((el) => {
+    el.style.display = user ? 'none' : '';
+  });
 }
 
 export async function loadProducts() {
