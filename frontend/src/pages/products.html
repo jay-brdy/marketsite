@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <h2>Fish Market</h2>
+        <nav class="nav-links">
+          <a href="/pages/index.html">Home</a>
+          <a href="/pages/products.html">Products</a>
+          <a href="/pages/cart.html">Cart</a>
+          <a href="/pages/about.html">About</a>
+          <a href="/pages/faq.html">FAQ</a>
+          <a href="/pages/login.html">Login</a>
+          <a href="/pages/orders.html">Orders</a>
+          <a href="/pages/admin.html">Admin</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Products</h1>
+      <p class="notice">This catalog reuses fandom data with attribution and license metadata.</p>
+      <div class="card-grid" data-products></div>
+      <button class="button" data-checkout>Mock Checkout</button>
+    </main>
+
+    <script type="module">
+      import { loadProducts } from '../js/ui.js';
+      import { bindCartButtons, bindCheckoutButton } from '../js/cart.js';
+      loadProducts();
+      bindCartButtons();
+      bindCheckoutButton();
+    </script>
+  </body>
+</html>

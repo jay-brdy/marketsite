@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <h2>Fish Market</h2>
+        <nav class="nav-links">
+          <a href="/pages/index.html">Home</a>
+          <a href="/pages/products.html">Products</a>
+          <a href="/pages/cart.html">Cart</a>
+          <a href="/pages/about.html">About</a>
+          <a href="/pages/faq.html">FAQ</a>
+          <a href="/pages/login.html">Login</a>
+          <a href="/pages/orders.html">Orders</a>
+          <a href="/pages/admin.html">Admin</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Login / Register</h1>
+      <div class="notice">Use admin email configured in the backend to get admin access.</div>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Create Account</h3>
+          <form data-register-form>
+            <label>Display Name</label>
+            <input name="displayName" required />
+            <label>Email</label>
+            <input type="email" name="email" required />
+            <label>Password</label>
+            <input type="password" name="password" required />
+            <button type="submit">Register</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3>Sign In</h3>
+          <form data-login-form>
+            <label>Email</label>
+            <input type="email" name="email" required />
+            <label>Password</label>
+            <input type="password" name="password" required />
+            <button type="submit">Login</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script type="module">
+      import { bindAuthForms } from '../js/auth.js';
+      bindAuthForms();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <h2>Fish Market</h2>
+        <nav class="nav-links">
+          <a href="/pages/index.html">Home</a>
+          <a href="/pages/products.html">Products</a>
+          <a href="/pages/cart.html">Cart</a>
+          <a href="/pages/about.html">About</a>
+          <a href="/pages/faq.html">FAQ</a>
+          <a href="/pages/login.html">Login</a>
+          <a href="/pages/orders.html">Orders</a>
+          <a href="/pages/admin.html">Admin</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Your Cart</h1>
+      <div class="notice">Update quantities or remove items. Checkout uses mocked payments.</div>
+      <div class="card-grid" data-cart-items></div>
+      <p data-cart-summary></p>
+      <button class="button" data-checkout>Mock Checkout</button>
+    </main>
+
+    <script type="module">
+      import { loadCart, bindCartItemActions, bindCheckoutButton } from '../js/cart.js';
+      loadCart();
+      bindCartItemActions();
+      bindCheckoutButton();
+    </script>
+  </body>
+</html>
